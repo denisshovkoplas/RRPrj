@@ -19,8 +19,10 @@ int main() {
     // Seed random number generator
     srand((unsigned)time(NULL));
     std::string play = "X";
+    // Play loop for game
     do{
         do{
+            // Choice for playing the game
             std::cout << "\nHello my dear little friend, want to play a game?\n";
             std::cout << "(Y)es or (N)o: ";
             std::cin >> play;
@@ -31,7 +33,7 @@ int main() {
         }while(play != "N" && play != "Y");
 
         if(play == "N") {
-            break;  // Exit if 'N'
+            break;
         }
 
         displayRules();
@@ -44,7 +46,7 @@ int main() {
         std::cout << "\nGame configured with " << numChambers << " chambers, " << numBullets << " bullets, and " << winningScore << " winning score.\n\n";
     
         // Initialize game state
-        bool* chambers = new bool[numChambers]; // Dynamically allocate array
+        bool* chambers = new bool[numChambers];
         initializeGame(chambers, numChambers, numBullets);
    
         std::cout << "Press Any Key and Enter to continue...";
@@ -160,12 +162,12 @@ void initializeGame(bool* chambers, int numChambers, int numBullets) {
         chambers[i] = false;
     }
     
-    // Place bullets randomly
+    // Random placement of bullets
     int bulletsPlaced = 0;
     while (bulletsPlaced < numBullets) {
         int chamber = rand() % numChambers;
         if (!chambers[chamber]) {
-            chambers[chamber] = true;  // Place a bullet
+            chambers[chamber] = true; 
             bulletsPlaced++;
         }
     }
@@ -181,8 +183,7 @@ void drawRevolver(int numChambers, int currentChamber) {
     std::cout << "      _____        \n";
     std::cout << "    /       \\     \n";
     
-    // Draw chambers in a circle
-    const int maxChambersInRow = 6;
+    const int maxChambersInRow = 3;
     
     if (numChambers <= maxChambersInRow) {
         // Draw chambers in a single row
@@ -197,7 +198,7 @@ void drawRevolver(int numChambers, int currentChamber) {
         std::cout << "|\n";
     } else {
         // Top row of chambers
-        std::cout << "  |";
+        std::cout << "   |";
         for (int i = 0; i < maxChambersInRow; i++) {
             if (i == currentChamber) {
                 std::cout << "*" << (i + 1) << "*";
@@ -208,7 +209,7 @@ void drawRevolver(int numChambers, int currentChamber) {
         std::cout << "|\n";
         
         // Bottom row of chambers
-        std::cout << "  |";
+        std::cout << "   |";
         for (int i = maxChambersInRow; i < numChambers; i++) {
             if (i == currentChamber) {
                 std::cout << "*" << (i + 1) << "*";
@@ -289,7 +290,7 @@ bool decideToQuit(const bool* chambers, int currentChamber, int& score) {
         if (decision == 'P') {
             return false;  // Don't quit
         } else if (decision == 'Q') {
-            // Apply quit scoring
+            // Apply quit scoring logic
             if (chambers[currentChamber]) {  // Would have been a bullet
                 score += 2;
                 std::cout << "Good choice! There was a bullet in the chamber. You gain 2 points.\n";
