@@ -1,0 +1,52 @@
+# Ignore exe files
+*
+!*/
+!*.*
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon files
+Icon?
+._*
+
+# Thumbnails
+Thumbs.db
+
+# Compiled source files
+*.out
+*.o
+*.obj
+*.elf
+
+# Executables (compiled programs)
+a.out
+*.out
+*.exe
+*/a.out
+*/myProgram  # (add your executable names here if they are custom)
+
+# C++ build directories
+build/
+bin/
+
+# Makefiles or temporary IDE files
+Makefile
+CMakeCache.txt
+CMakeFiles/
+
+# Backup or temporary files
+*~
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# VSCode settings (if using VSCode)
+.vscode/
+
+# Xcode project files (if you ever open with Xcode)
+*.xcworkspace
+*.xcodeproj
